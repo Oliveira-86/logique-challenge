@@ -1,12 +1,13 @@
 package com.logique.shortinglink.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -19,45 +20,66 @@ public class Url implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String urlPath;
-	private String shortUrl;
+	
+	@Lob
+	private String originalUrl;
+	private String shortLink;
+	
 	
 	@JsonFormat(pattern = "dd-MM-yyyy")
-	private Date date;
+	private LocalDateTime creationDate;
+	
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	private LocalDateTime expirationDate;
 	
 	public Url() {
 	}
 
-	public Url(Long id, String urlPath, String shortUrl, Date date) {
+	public Url(
+			Long id, 
+			String originalUrl, 
+			String shortLink, 
+			LocalDateTime creationDate, 
+			LocalDateTime expirationDate
+			) {
 		super();
 		this.id = id;
-		this.urlPath = urlPath;
-		this.shortUrl = shortUrl;
-		this.date = date;
+		this.originalUrl = originalUrl;
+		this.shortLink = shortLink;
+		this.creationDate = creationDate;
+		this.expirationDate = expirationDate;
 	}
 
-	public String getUrl() {
-		return urlPath;
+	public String getOriginalUrl() {
+		return originalUrl;
 	}
 
-	public void setUrl(String urlPath) {
-		this.urlPath = urlPath;
+	public void setOriginalUrl(String originalUrl) {
+		this.originalUrl = originalUrl;
 	}
 
-	public String getShortUrl() {
-		return shortUrl;
+	public String getShortLink() {
+		return shortLink;
 	}
 
-	public void setShortUrl(String shortUrl) {
-		this.shortUrl = shortUrl;
+	public void setShortLink(String shortLink) {
+		this.shortLink = shortLink;
 	}
 	
-	public Date getDate() {
-		return date;
+	public LocalDateTime getCreationDate() {
+		return creationDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setCreationDate(LocalDateTime creationDate) {
+		this.creationDate = creationDate;
+	}
+	
+	public LocalDateTime getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(LocalDateTime expirationDate) {
+		this.expirationDate = expirationDate;
 	}
 
 	@Override
@@ -84,6 +106,4 @@ public class Url implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
 }

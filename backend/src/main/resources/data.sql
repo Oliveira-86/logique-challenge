@@ -1,3 +1,0 @@
-INSERT INTO tb_url (url_path, short_url, date) VALUES ('http://www.google.com', 'google', TIMESTAMP WITHOUT TIME ZONE '2020-07-14T10:00:00Z');
-INSERT INTO tb_url (url_path, short_url, date) VALUES ('http://www.facebook.com', 'facebook', TIMESTAMP WITHOUT TIME ZONE '2020-10-15T10:00:00Z');
-INSERT INTO tb_url (url_path, short_url, date) VALUES ('http://www.instagram.com', 'instagram', TIMESTAMP WITHOUT TIME ZONE '2021-09-06T23:29:00Z');

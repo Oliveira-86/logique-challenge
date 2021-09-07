@@ -7,5 +7,6 @@ import com.logique.shortinglink.entities.Url;
 
 @Repository
 public interface UrlRepository extends JpaRepository<Url, Long> {
-
+	
+	public Url findByShortLink(String shortLink);
 }
