@@ -1,4 +1,6 @@
 package com.logique.shortinglink.services;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.logique.shortinglink.entities.Url;
@@ -11,4 +13,5 @@ public interface UrlService {
 	public Url persistShortLink(Url url);
 	public Url getEncodedUrl(String url);
 	public void deleteShortLink(Url url);
+	public List<Url> findAll();
 }

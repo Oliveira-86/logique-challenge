@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Component
 public class UrlServiceImp implements UrlService {
@@ -42,7 +43,7 @@ public class UrlServiceImp implements UrlService {
     {
         if(StringUtils.isBlank(expirationDate))
         {
-            return creationDate.plusSeconds(60);
+            return creationDate.plusMinutes(10);
         }
         LocalDateTime expirationDateToRet = LocalDateTime.parse(expirationDate);
         return expirationDateToRet;
@@ -75,5 +76,10 @@ public class UrlServiceImp implements UrlService {
 
         urlRepository.delete(url);
     }
+    
+    @Override
+    public List<Url> findAll() {
+		return urlRepository.findAll();
+	}
 
 }
