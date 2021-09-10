@@ -2,9 +2,12 @@ package com.logique.shortinglink.entities.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+
 public class UrlDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@NotBlank(message = "Required field")
 	private String url;
 	private String expirationDate;
 	
