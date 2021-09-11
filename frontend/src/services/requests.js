@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-export const makeRequest = (params) => {
+const BASE_URL = 'http://localhost:8080'
+
+export const makeRequest = (url) => {
     return axios({
-        ...params,
-        baseURL: URL_BASE
+        url: `${BASE_URL}${url}`
     }); 
 }
