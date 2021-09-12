@@ -3,7 +3,6 @@ package com.logique.shortinglink.config;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,15 +20,6 @@ import com.logique.shortinglink.components.JwtTokenEnhancer;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-
-	@Value("${security.oauth2.client.client-id}")
-	private String clientId;
-	
-	@Value("${security.oauth2.client.client-secret}")
-	private String clientSecret;
-	
-	@Value("${jwt.duration}")
-	private Integer jwtDuration;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEnconder;
@@ -54,11 +44,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
-		.withClient(clientId)
-		.secret(passwordEnconder.encode(clientSecret))
+		.withClient("logique")
+		.secret(passwordEnconder.encode("logique123"))
 		.scopes("read", "write")
 		.authorizedGrantTypes("password")
-		.accessTokenValiditySeconds(jwtDuration);
+		.accessTokenValiditySeconds(84600);
 	}
 
 	@Override

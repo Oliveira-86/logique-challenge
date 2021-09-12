@@ -6,8 +6,9 @@ import { makeRequest } from '../../services/requests'
 const LinksShorted = () => {
 
     useEffect(() => {
-        makeRequest({ url: '/links' })
-        .then(response => console.log(response.data))
+        fetch('http://localhost:8080/links')
+        .then(res => res.json())
+        .then(res => console.log(res))
     }, []);
 
     return (
