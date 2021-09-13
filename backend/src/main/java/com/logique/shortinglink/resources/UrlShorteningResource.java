@@ -1,16 +1,21 @@
 package com.logique.shortinglink.resources;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.logique.shortinglink.entities.Url;
 import com.logique.shortinglink.entities.dto.UrlDto;
@@ -71,6 +76,12 @@ public class UrlShorteningResource {
 
 		response.sendRedirect(urlToRet.getOriginalUrl());
 		return null;
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<UrlDto> delete(@PathVariable Long id) {
+		urlService.deleteById(id);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@GetMapping("/links")

@@ -13,13 +13,20 @@ import Fonts from '../../styles/Fonts';
 
 const ShortingLinkScreen = () => {
     const [url, setUrl] = useState("");
+    const [name, setName] = useState("");
 
+    const short = async () =>{
+        const response = await fetch(`http://localhost:8080/links`);
+    
+        const resData = await response.json();
+        console.log(resData)
+      }
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
                 <Text style={styles.title}>url
-                    <Text style={{ color: Colors.primary}}>Shortener</Text>
+                    <Text style={{ color: Colors.primary }}>Shortener</Text>
                 </Text>
 
                 <Input
@@ -27,9 +34,14 @@ const ShortingLinkScreen = () => {
                     value={url}
                     placeholder="Enter URL"
                 />
+                <Input
+                    onChangeText={(text) => setName(text)}
+                    value={name}
+                    placeholder="Enter Name"
+                />
 
                 <TouchableOpacity
-                    onPress={() => { }}
+                    onPress={() => short()}
                     style={styles.button}
                 >
                     <Text style={styles.buttonText}>Shorten</Text>
