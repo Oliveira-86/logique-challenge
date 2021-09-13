@@ -31,4 +31,4 @@
 
 ##### Run the project
 
-    $ expo start
+    $ yarn start
